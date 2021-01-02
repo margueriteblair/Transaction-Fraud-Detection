@@ -34,5 +34,9 @@ X_test = sc_X.transform(X_test)
 #now fit multiple linear regressions to the training set
 from sklearn.linear_model import LogisticRegression
 regressor = LogisticRegression()
+regressor.fit(X_train, Y_train)
+y_pred = regressor.predict(X_test)
+from sklearn.metrics import confusion_matrix
+conf_mat = confusion_matrix(Y_test, y_pred);
 
 
