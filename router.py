@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Api
-import fraud_detection
+import analytics
 
 app = Flask(__name__)
 api = Api(app)
@@ -11,7 +11,7 @@ def index():
 
 @app.route("/api/fraud-det")
 def fetch_model():
-    result = fraud_detection.train_model()
+    result = analytics.train_model()
     return (jsonify(result), 200)
 
 if __name__ == "__main__":
