@@ -13,7 +13,7 @@ def train_model():
     print(dataset.shape)
 
     X = dataset.iloc[:, [1, 2, 4, 5, 7, 8]].values
-    Y = dataset.iloc[:, 9].values
+    y = dataset.iloc[:, 9].values
 
     #below, we're going to transform the data into a binary value from the csv
     from sklearn.preprocessing import LabelEncoder, OneHotEncoder
@@ -26,7 +26,7 @@ def train_model():
 
     #now wesplit the dataset into the Training set and the Test set
     from sklearn.model_selection import train_test_split
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
 
     #feature scaling: all values are within similar range
     from sklearn.preprocessing import StandardScaler
@@ -37,10 +37,10 @@ def train_model():
     #now fit multiple linear regressions to the training set
     from sklearn.linear_model import LogisticRegression
     regressor = LogisticRegression()
-    regressor.fit(X_train, Y_train)
+    regressor.fit(X_train, y_train)
     y_pred = regressor.predict(X_test)
     from sklearn.metrics import confusion_matrix
-    conf_mat = confusion_matrix(Y_test, y_pred);
+    conf_mat = confusion_matrix(y_test, y_pred);
     return conf_mat
 
 
