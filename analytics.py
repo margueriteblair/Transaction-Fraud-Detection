@@ -15,15 +15,15 @@ def train_model():
 
     print(dataset.shape)
 
-    X = dataset.iloc[:, [1, 2, 4, 5, 7, 8]].values
+    X = dataset.iloc[:, [2, 4, 5, 7, 8]].values
     y = dataset.iloc[:, 9].values
     y_target = dataset['isFraud']
 
     #create the training set and the test set
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state = 0, stratify=y_target)
 
     #now fit multiple linear regressions to the training set
-    regression = LogisticRegression()
+    regression = LogisticRegression(random_state=0)
     regression.fit(X_train, y_train)
     y_pred = regression.predict(X_test)
 
@@ -45,10 +45,10 @@ def train_model():
     result = [
         {
             'Test data Size': y_test.size,
-            'Non-Fradulent predicted True': tn.item(),
-            'Non-Fradulent predicted false': fn.item(),
-            'Fradulent predicted True': tp.item(),
-            'Fradulent predicted false': fp.item()
+            'Non-Fradulent predicted True': true_non_fraud.item(),
+            'Non-Fradulent predicted false': false_non_fraud.item(),
+            'Fradulent predicted True': true_fraud.item(),
+            'Fradulent predicted false': false_fraud.item()
         },
 
         {
