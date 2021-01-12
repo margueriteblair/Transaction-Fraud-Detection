@@ -11,7 +11,8 @@ def index():
 
 @app.route("/api/fraud-det")
 def fetch_model():
-    return analytics.train_model()
+    analysis = analytics.train_model()
+    return jsonify(analysis, 200)
 
 if __name__ == "__main__":
     app.run(host='localhost', port=9999)
