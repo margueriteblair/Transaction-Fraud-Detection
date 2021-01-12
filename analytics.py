@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
+from sklearn import metrics
 
 
 def train_model():
@@ -29,6 +30,34 @@ def train_model():
 
     #using our test set results, we can use a confusion matrix to compare the results our model came up with and our actual y_test
     conf_mat = confusion_matrix(y_test, y_pred);
-    print(conf_mat)
+    # print(conf_mat)
+
+    true_non_fraud, false_non_fraud, true_fraud, false_fraud = confusion_matrix(y_test, y_pred).ravel()
+
+    accuracy = round(metrics.accuracy_score(y_test, y_pred), 4)*100
+    precision = round(metrics.precision_score(y_test, y_pred), 4)*100
+    recall = round(metrics.recall_score(y_test, y_pred), 4)*100
+
+    print("Accuracy:     ", accuracy)
+    print("Precision:    ", precision)
+    print("Recall:       ", recall)
+
+    result = [
+        {
+            'Test data Size': y_test.size,
+            'Non-Fradulent predicted True': tn.item(),
+            'Non-Fradulent predicted false': fn.item(),
+            'Fradulent predicted True': tp.item(),
+            'Fradulent predicted false': fp.item()
+        },
+
+        {
+            'Accuracy': accuracy,
+            'Precision': precision,
+            'Recall': recall
+        }
+    ]
+
+    return result
 
 
