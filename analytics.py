@@ -26,7 +26,9 @@ def train_model():
     regression.fit(X_train, y_train)
     y_pred = regression.predict(X_test)
 
+
+    #using our test set results, we can use a confusion matrix to compare the results our model came up with and our actual y_test
     conf_mat = confusion_matrix(y_test, y_pred);
-    return conf_mat
+    print(conf_mat)
 
 
