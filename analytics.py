@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plot
 import pandas as pd
-import sklearn
+from sklearn.model_selection import train_test_split
 
 
 def train_model():
@@ -14,19 +14,19 @@ def train_model():
 
     X = dataset.iloc[:, [1, 2, 4, 5, 7, 8]].values
     y = dataset.iloc[:, 9].values
+    y_target = dataset['isFraud']
 
-    #below, we're going to transform the data into a binary value from the csv
-    from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-    label_encoder = LabelEncoder()
-    X[:, 0] = label_encoder.fit_transform(X[:, 0])
+    # #below, we're going to transform the data into a binary value from the csv
+    # from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+    # label_encoder = LabelEncoder()
+    # X[:, 0] = label_encoder.fit_transform(X[:, 0])
 
-    #then we retransform into numbers b/c OneHotEncoder can't use strings
-    one_hot_encoder = OneHotEncoder(categorial_features=[0])
-    X = one_hot_encoder.fit_transform(X).toarray()
+    # #then we retransform into numbers b/c OneHotEncoder can't use strings
+    # one_hot_encoder = OneHotEncoder(categorial_features=[0])
+    # X = one_hot_encoder.fit_transform(X).toarray()
 
-    #now wesplit the dataset into the Training set and the Test set
-    from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+    #create the training set and the test set
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
     #feature scaling: all values are within similar range
     from sklearn.preprocessing import StandardScaler
