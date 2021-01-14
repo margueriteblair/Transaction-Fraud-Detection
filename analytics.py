@@ -34,8 +34,13 @@ def train_model():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0, stratify=y_target)
 
     #now fit multiple linear regressions to the training set
+    #stated broadly, Linear regression is one of the best statistical models that studies the relationship between a set of independent variables
+    #in this case, our X input dataset, and a dependent varaible, in this case y, our boolean output for fraud
+    #relationships between variables are represented with a line of best fit
     regression = LogisticRegression(random_state=0)
+    #linear regression.fit() --> pass in our input training set and our output training set
     regression.fit(X_train, y_train)
+    #after we train our linear regression model above, we want to use it to predict the output based on y_test
     y_pred = regression.predict(X_test)
 
 
