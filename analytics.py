@@ -1,25 +1,32 @@
 
 #import libraries for project:
-import numpy as np
-import matplotlib.pyplot as plot
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 
-
+#we want to encompass all  of this within a method so it can easily be called from our router
 def train_model():
 
+    #importing the dataset
     dataset = pd.read_csv('~/Desktop/PS_20174392719_1491204439457_log.csv')
 
+    #printing out the number of rows and columns of our dataset
     print(dataset.shape)
 
+    #X is our input data and we'll be using rows 2, 4, 5, 7, 8 to detect fraud in this instance
+    #It's common practice to name the input dataset 'X'
     X = dataset.iloc[:, [2, 4, 5, 7, 8]].values
+
+    #It's common praticeto name the output dataset 'y' lowercase.
+    #y is our output target dataset b/c it's got the verdict whether or not a transaction is or isn't actually fraud
     y = dataset.iloc[:, 9].values
     y_target = dataset['isFraud']
 
     #create the training set and the test set
+    #we know train_test_split() returns a tuple, so we can get all of these variables at once from calling it on our data
+    #train_test_split(inputSet, outputSet, test_size, random_state, stratify)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state = 0, stratify=y_target)
 
     #now fit multiple linear regressions to the training set
