@@ -27,7 +27,11 @@ def train_model():
     #create the training set and the test set
     #we know train_test_split() returns a tuple, so we can get all of these variables at once from calling it on our data
     #train_test_split(inputSet, outputSet, test_size, random_state, stratify)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state = 0, stratify=y_target)
+    #we're splitting our data so that 80% of it is used to train the model, while 20% is used to actually test and predict
+    #the stratify parameter makes a split so that the proportion of values in the sample produced will be the same as the proportion of values provided to the stratify parameter!
+    #for instance, output dataset y is binary 0's and 1's to represent booleans, and let's assume that there are 25% 0's and 75% 1's, with stratify = y_target,
+    #we're saying that our random test_train_split should have the same split ratio of 1:3, 0's:1's!
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0, stratify=y_target)
 
     #now fit multiple linear regressions to the training set
     regression = LogisticRegression(random_state=0)
