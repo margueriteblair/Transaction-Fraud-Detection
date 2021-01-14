@@ -37,6 +37,7 @@ def train_model():
     #stated broadly, Linear regression is one of the best statistical models that studies the relationship between a set of independent variables
     #in this case, our X input dataset, and a dependent varaible, in this case y, our boolean output for fraud
     #relationships between variables are represented with a line of best fit
+    #Linear Regression analysis is a common fraud detection technique
     regression = LogisticRegression(random_state=0)
     #linear regression.fit() --> pass in our input training set and our output training set
     regression.fit(X_train, y_train)
@@ -45,8 +46,7 @@ def train_model():
 
 
     #using our test set results, we can use a confusion matrix to compare the results our model came up with and our actual y_test
-    conf_mat = confusion_matrix(y_test, y_pred);
-    # print(conf_mat)
+    #A confusion matrix is a summarized table of the number of correct and incorrect predictions yielded by a model, in this case our linearRegression model
 
     true_non_fraud, false_non_fraud, true_fraud, false_fraud = confusion_matrix(y_test, y_pred).ravel()
 
