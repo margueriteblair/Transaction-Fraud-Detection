@@ -73,18 +73,18 @@ def train_model():
 
     results = [
         {
+            'Test data Size (Records)': y_test.size
+        },
+        {
             'Accuracy': accuracy,
             'Precision': precision,
             'Recall': recall
         },
         {
-            'Test data Size': y_test.size,
-            'Non-Fradulent transactions correctly': tn.item(),
-            'Non-Fradulent transactions predicted incorrectly': fp.item(),
-            'Fradulent transactions predicted correctly': fn.item(),
-            'Fradulent transactions predicted incorrectly': tp.item()}
-
-
+            'Non-Fraudulent transactions correctly': tn.item(),
+            'Non-Fraudulent transactions predicted incorrectly': fp.item(),
+            'Fraudulent transactions predicted correctly': fn.item(),
+            'Fraudulent transactions predicted incorrectly': tp.item()}
     ]
 
     return results
