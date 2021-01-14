@@ -63,8 +63,11 @@ def train_model():
 
     #all metrics score methods are imported from sklearn
     #across all metrics we calculate scores by comparing the output test set and our predicted output test set from our model
+    #accuracy is how many we got right compared to the actual set
     accuracy = round(metrics.accuracy_score(y_test, y_pred), 4)*100
+    #recall is the ratio of true-postives/(true-positives+false-negatives)
     recall = round(metrics.recall_score(y_test, y_pred), 4)*100
+    #precision is the ratio of true-positives/(true-positives+false-positives)
     precision = round(metrics.precision_score(y_test, y_pred), 4) * 100
 
     print("Accuracy: ", accuracy)
@@ -81,10 +84,11 @@ def train_model():
             'Recall': recall
         },
         {
-            'Non-Fraudulent transactions correctly': tn.item(),
-            'Non-Fraudulent transactions predicted incorrectly': fp.item(),
-            'Fraudulent transactions predicted correctly': fn.item(),
-            'Fraudulent transactions predicted incorrectly': tp.item()}
+            'Non-Fraudulent transactions predicted correctly (True Negative)': tn.item(),
+            'Non-Fraudulent transactions predicted incorrectly (False Negative)': fn.item(),
+            'Fraudulent transactions predicted correctly (True Positive)': tp.item(),
+            'Fraudulent transactions predicted incorrectly (False Positive)': fp.item()
+        }
     ]
 
     return results
