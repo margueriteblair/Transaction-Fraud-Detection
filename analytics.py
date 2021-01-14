@@ -45,9 +45,12 @@ def train_model():
     y_pred = regression.predict(X_test)
 
 
+    conf_mat = confusion_matrix(y_test, y_pred)
+    print(conf_mat)
+
     #using our test set results, we can use a confusion matrix to compare the results our model came up with and our actual y_test
     #A confusion matrix is a summarized table of the number of correct and incorrect predictions yielded by a model, in this case our linearRegression model
-
+    #.ravel() method flattens out the confusion matrix
     tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
 
     accuracy = round(metrics.accuracy_score(y_test, y_pred), 4)*100

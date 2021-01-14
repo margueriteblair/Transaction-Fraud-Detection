@@ -9,7 +9,7 @@ api = Api(app)
 def index():
     return "this is a test! successfully launched py server"
 
-@app.route("/api/fraud-det")
+@app.route("/api/fraud-det", methods=['GET'])
 def fetch_model():
     analysis = analytics.train_model()
     return jsonify(analysis, 200)
