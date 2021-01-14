@@ -59,7 +59,7 @@ def train_model():
     # print(confusion_matrix(y_test, y_pred).ravel())
     #predicted is on the top, actual is on the side
     #note to self, double triple check that the order below is the correct order of the outputs
-    tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred, labels=[0, 1]).ravel()
 
     #all metrics score methods are imported from sklearn
     #across all metrics we calculate scores by comparing the output test set and our predicted output test set from our model
