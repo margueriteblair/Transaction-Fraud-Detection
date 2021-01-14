@@ -48,7 +48,7 @@ def train_model():
     #using our test set results, we can use a confusion matrix to compare the results our model came up with and our actual y_test
     #A confusion matrix is a summarized table of the number of correct and incorrect predictions yielded by a model, in this case our linearRegression model
 
-    true_non_fraud, false_non_fraud, true_fraud, false_fraud = confusion_matrix(y_test, y_pred).ravel()
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
 
     accuracy = round(metrics.accuracy_score(y_test, y_pred), 4)*100
     precision = round(metrics.precision_score(y_test, y_pred), 4)*100
@@ -61,10 +61,10 @@ def train_model():
     result = [
         {
             'Test data Size': y_test.size,
-            'Non-Fradulent predicted True': true_non_fraud.item(),
-            'Non-Fradulent predicted false': false_non_fraud.item(),
-            'Fradulent predicted True': true_fraud.item(),
-            'Fradulent predicted false': false_fraud.item()
+            'Non-Fradulent predicted True': tn.item(),
+            'Non-Fradulent predicted false': fp.item(),
+            'Fradulent predicted True': fn.item(),
+            'Fradulent predicted false': tp.item()
         },
 
         {
