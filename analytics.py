@@ -48,18 +48,21 @@ def train_model():
     #needed to test the confusion matrix just to double check the order of outputs!
     #confusion matrix outputs can be different across different tools
     #when working with a confusion matrix, we pass in the y values we know to be true, and the predicted y values
-    conf_mat = confusion_matrix(y_test, y_pred, labels=[1, 0])
-    print(conf_mat)
+    # conf_mat = confusion_matrix(y_test, y_pred, labels=[1, 0])
+    # print(conf_mat)
 
     #(1, 1)=true positive (1, 0) = false negative, (0,1)=false positive (1, 1) = true negative
     #using our test set results, we can use a confusion matrix to compare the results our model came up with and our actual y_test
     #A confusion matrix is a summarized table of the number of correct and incorrect predictions yielded by a model, in this case our linearRegression model
     #.ravel() method flattens out the confusion matrix
     #outputs respectively: true negative, false positive, false negative, true positive
-    print(confusion_matrix(y_test, y_pred).ravel())
+    # print(confusion_matrix(y_test, y_pred).ravel())
+    #predicted is on the top, actual is on the side
+    #note to self, double triple check that the order below is the correct order of the outputs
     tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
 
     #all metrics score methods are imported from sklearn
+    #across all metrics we calculate scores by comparing the output test set and our predicted output test set from our model
     accuracy = round(metrics.accuracy_score(y_test, y_pred), 4)*100
     recall = round(metrics.recall_score(y_test, y_pred), 4)*100
     precision = round(metrics.precision_score(y_test, y_pred), 4) * 100
